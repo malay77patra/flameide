@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cpp IDE</title>
+    <title>C++ IDE</title>
+
+    <!-- Styles -->
     <style>
         body {
             margin: 0;
@@ -30,6 +32,7 @@
             cursor: pointer;
             color: inherit;
             transition: background .1s ease-in-out;
+            position: relative;
         }
 
         .run-btn:hover {
@@ -38,6 +41,16 @@
 
         .run-btn:disabled {
             background-color: rgba(233, 30, 99, .2);
+        }
+
+        .run-btn kbd {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(calc(-100% - 10px), -50%);
+            white-space: nowrap;
+            font-style: italic;
+            opacity: .5;
         }
 
         nav {
@@ -144,13 +157,17 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav>
         <button class="run-btn" id="run" onclick="compileCode()">Run
             <svg class="icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 5v14l11-7z" fill="currentColor"></path>
             </svg>
+            <kbd>Ctrl + R &rarr;</kbd>
         </button>
     </nav>
+
+    <!-- Main Content Area -->
     <main>
         <div id="editor"></div>
         <div id="aside">
@@ -165,7 +182,9 @@
         </div>
     </main>
 
+    <!-- JavaScript Functions and Event Handlers -->
     <script>
+        // Initialize Ace Editors
         const runBtn = document.getElementById('run');
         const stdoutElement = document.getElementById('stdout');
 
@@ -173,11 +192,12 @@
             theme: "ace/theme/dracula",
             mode: "ace/mode/c_cpp",
             showPrintMargin: false,
-            value: localStorage.getItem('code'),
+            value: localStorage.getItem('cpp-code'),
             wrap: 'free',
             fontSize: 14,
             keyboardHandler: "ace/keyboard/vscode"
         });
+
         editor.commands.addCommand({
             name: 'run code',
             bindKey: { win: 'Ctrl-R', mac: 'Command-R' },
@@ -188,8 +208,8 @@
         });
 
         editor.on('input', () => {
-            localStorage.setItem('code', editor.getValue().trim());
-        })
+            localStorage.setItem('cpp-code', editor.getValue().trim());
+        });
 
         const stdin = ace.edit("stdin", {
             theme: "ace/theme/dracula",
@@ -201,17 +221,21 @@
 
         stdin.on('input', () => {
             localStorage.setItem('input', stdin.getValue().trim());
-        })
+        });
 
+        // Initialize Split.js
         Split(['#input', '#output'], {
             sizes: [40, 60],
             direction: 'vertical',
             gutterSize: 8
         });
+
         Split(['#editor', '#aside'], {
             sizes: [70, 30],
             gutterSize: 8
         });
+
+        // Display Output in stdout
         function displayOutput(text, type = 'info') {
             switch (type) {
                 case 'success':
@@ -231,6 +255,7 @@
             stdoutElement.innerText = text;
         }
 
+        // Compile Code Function
         function compileCode() {
             const formData = new URLSearchParams();
             formData.append('code', editor.getValue().trim());
@@ -281,10 +306,7 @@
                     displayOutput(error, 'error');
                 });
         }
-
-
     </script>
-
 </body>
 
 </html>
