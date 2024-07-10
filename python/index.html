@@ -192,7 +192,7 @@
             theme: "ace/theme/dracula",
             mode: "ace/mode/python",
             showPrintMargin: false,
-            value: localStorage.getItem('code'),
+            value: localStorage.getItem('py-code'),
             wrap: 'free',
             fontSize: 14,
             keyboardHandler: "ace/keyboard/vscode"
@@ -208,7 +208,7 @@
         });
 
         editor.on('input', () => {
-            localStorage.setItem('code', editor.getValue().trim());
+            localStorage.setItem('py-code', editor.getValue().trim());
         });
 
         const stdin = ace.edit("stdin", {
