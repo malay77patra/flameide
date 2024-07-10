@@ -161,14 +161,7 @@
             theme: "ace/theme/dracula",
             mode: "ace/mode/c_cpp",
             showPrintMargin: false,
-            value: `#include <bits/stdc++.h>
-using namespace std;
-
-int main() 
-{
-    cout << "hello world";
-    return 0;
-}`,
+            value: localStorage.getItem('code'),
             wrap: 'free',
             fontSize: 14,
             keyboardHandler: "ace/keyboard/vscode"
@@ -182,12 +175,21 @@ int main()
             readOnly: true
         });
 
+        editor.on('input', ()=>{
+            localStorage.setItem('code', editor.getValue().trim());
+        })
+
         const stdin = ace.edit("stdin", {
             theme: "ace/theme/dracula",
             showPrintMargin: false,
             fontSize: 14,
-            wrap: 'free'
+            wrap: 'free',
+            value: localStorage.getItem('input')
         });
+
+        stdin.on('input', ()=>{
+            localStorage.setItem('input', stdin.getValue().trim());
+        })
 
         Split(['#input', '#output'], {
             sizes: [40, 60],
@@ -239,7 +241,7 @@ int main()
                 return Promise.race([
                     fetch(url, options),
                     new Promise((_, reject) =>
-                        setTimeout(() => reject(new Error('Compiling took more than expected time .\nCheck if you forgot to give input')), timeout)
+                        setTimeout(() => reject(new Error('compilation took more than expected time\nCheck if you forgot to give input')), timeout)
                     )
                 ]);
             };
