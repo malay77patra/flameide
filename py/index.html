@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python IDE</title>
-
+    <link rel="icon shortcut" type="x-icon/svg" href="https://svgshare.com/i/18Lm.svg">
     <!-- Styles -->
     <style>
         body {
@@ -192,7 +192,7 @@
             theme: "ace/theme/dracula",
             mode: "ace/mode/python",
             showPrintMargin: false,
-            value: localStorage.getItem('py-code'),
+            value: localStorage.getItem('py-code') || `# your code goes here`,
             wrap: 'free',
             fontSize: 14,
             keyboardHandler: "ace/keyboard/vscode"
