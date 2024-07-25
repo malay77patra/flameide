@@ -163,7 +163,7 @@
             <svg class="icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M8 5v14l11-7z" fill="currentColor"></path>
             </svg>
-            <kbd>Ctrl + R &rarr;</kbd>
+            <kbd>Ctrl + ' &rarr;</kbd>
         </button>
     </nav>
 
@@ -208,7 +208,7 @@ int main()
 
         editor.commands.addCommand({
             name: 'run code',
-            bindKey: { win: 'Ctrl-R', mac: 'Command-R' },
+            bindKey: { win: 'Ctrl-\'', mac: 'Command-\'' },
             exec: function (editor) {
                 document.getElementById('run').click();
             },
