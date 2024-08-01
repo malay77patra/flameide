@@ -15,7 +15,7 @@ A lightweight browser-based IDE for competitive programming. No installation req
 
 To start using Flameide, simply visit the website:
 
-[Flameide](https://flamecoders.github.io/online-ide/)
+[Flameide](https://flameide.vercel.app)
 
 No installation or setup is required. Just open the link in your browser and begin coding!
 
