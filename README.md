@@ -1,6 +1,6 @@
 # Flameide
 
-![Flameide](https://via.placeholder.com/1200x400.png)
+![Flameide]([https://via.placeholder.com/1200x400.png](https://i.ibb.co/QQkXY21/Flameide.png))
 
 **Flameide**  
 A lightweight browser-based IDE for competitive programming. No installation required!
