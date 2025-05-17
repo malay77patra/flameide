@@ -2,6 +2,10 @@
 
 ![Flameide](https://i.ibb.co/QQkXY21/Flameide.png)
 
+## visit: https://flameide.vercel.app
+
+> NOTE: The CodeX service running the web app is shutted down now, it doesn't work anymore.
+
 **Flameide**  
 A lightweight browser-based IDE for competitive programming. No installation required!
 
